@@ -13,8 +13,16 @@ create table products (
 create table orders (
     id                      bigserial primary key,
     customer_id             bigint references customers(id),
+    price                   int
+);
+
+create table order_items (
+    id                      bigserial primary key,
     product_id              bigint references products(id),
-    current_price           int
+    order_id                bigint references orders(id),
+    price                   int,
+    price_per_product       int,
+    quantity                int
 );
 
 insert into customers (name)
@@ -44,8 +52,3 @@ values
 ('Bread17', 38),
 ('Bread18', 39),
 ('Bread19', 40);
-
-
-insert into orders (customer_id, product_id, current_price)
-values
-(1, 1, 24);

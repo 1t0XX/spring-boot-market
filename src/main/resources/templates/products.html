@@ -43,6 +43,7 @@
             <th>ID</th>
             <th>Название</th>
             <th>Цена</th>
+            <th>Действие</th>
         </tr>
         </thead>
         <tbody>
@@ -50,6 +51,10 @@
             <td th:text="${p.id}"/>
             <td th:text="${p.title}"/>
             <td th:text="${p.price}"/>
+            <td>
+                <a class="btn btn-success" th:href="@{'/cart/add/' + ${p.id}}">В корзину</a>
+                <a class="btn btn-danger" th:href="@{'/products/edit/' + ${p.id}}">Изменить</a>
+            </td>
         </tr>
         </tbody>
     </table>
@@ -65,26 +70,6 @@
                 th:each="i : ${#numbers.sequence(1, products.getTotalPages())}">
                 <a class="page-link" th:text="${i}" th:href="@{'/products?p=' + ${i} + ${filterDefinition}}"></a>
             </li>
-
-
-            <li class="page-item" th:classappend="${products.getNumber() + 1 == i ? 'active' : ''}"
-                th:each="i : ${#numbers.sequence(1, products.getTotalPages())}">
-                <a class="page-link" th:if="${(i <= products.getNumber() +3) && (i >= products.getNumber() -1)}"
-                   th:text="${i}" th:href="@{'/products?p=' + ${i} + ${filterDefinition}}"></a>
-            </li>
-
-
-            <li class="page-item" th:classappend="${products.getNumber() + 1 == i ? 'active' : ''}"
-                th:each="i : ${#numbers.sequence((products.number -1 > 0 ? products.number -1 : 1 ), (products.number + 3 < products.totalPages ? product.number +3 : products.totalPages), 1}">
-                <a class="page-link" th:text="${i}" th:href="@{'/products?p=' + ${i} + ${filterDefinition}}"></a>
-            </li>
-
-
-
-
-
-
-
 
             <li class="page-item"  th:classappend="${products.isLast() ? 'disabled' : ''}">
                 <a class="page-link"

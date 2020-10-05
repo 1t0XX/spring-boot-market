@@ -1,7 +1,6 @@
 package com.geekbrains.geek.market.services;
 
 import com.geekbrains.geek.market.entities.Product;
-import com.geekbrains.geek.market.exceptions.ResourceNotFoundException;
 import com.geekbrains.geek.market.repositories.ProductRepository;
 import com.geekbrains.geek.market.repositories.specifications.ProductSpecifications;
 import com.geekbrains.geek.market.utils.ProductFilter;
@@ -32,10 +31,7 @@ public class ProductService {
         return productRepository.findAll(spec, PageRequest.of(page, size));
     }
 
-    public void saveById(Long id, String title, int price){
-        Product product = findById(id).orElseThrow(() -> new ResourceNotFoundException("Product with id: " + id + "doesn't exists"));
-        product.setPrice(price);
-        product.setTitle(title);
-        productRepository.save(product);
+    public Product saveOrUpdate(Product product) {
+        return productRepository.save(product);
     }
 }

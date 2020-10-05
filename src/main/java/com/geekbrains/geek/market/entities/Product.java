@@ -21,9 +21,6 @@ public class Product {
     @Column(name = "title")
     private String title;
 
-    @OneToMany(mappedBy = "product", orphanRemoval = true)
-    private List<Order> orders;
-
     @Column(name = "price")
     private int price;
 }
