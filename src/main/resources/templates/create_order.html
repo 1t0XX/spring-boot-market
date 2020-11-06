@@ -39,6 +39,8 @@
         </tr>
         </tbody>
     </table>
+
+
     <form method="post" th:action="@{/orders/confirm}">
         <input type="text" required name="receiver_name" th:value="${username}" placeholder="Имя получателя">
         <input type="text" required name="phone_number" placeholder="Телефон">
@@ -46,6 +48,10 @@
         <button class="btn btn-success" type="submit">Подтвердить</button>
     </form>
 </div>
+
+
+
+
 
 </body>
 </html>
