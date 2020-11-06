@@ -6,6 +6,20 @@ create table users (
   primary key (id)
 );
 
+
+create table profiles (
+    id                    bigserial,
+  name              varchar(30) not null,
+  surname              varchar(80) not null,
+  email                 varchar(50) unique,
+  birthday              varchar(30) not null,
+  sex                   varchar(2) unique,
+  cityOfBirth           varchar(30) not null,
+  primary key (id)
+);
+
+
+
 create table roles (
   id                    serial,
   name                  varchar(50) not null,

@@ -10,7 +10,7 @@ angular.module('app').controller('cartController', function ($scope, $http) {
             address: $scope.newOrder.address
         }
     })
-        .then(function (response) {
+        .then(function () {
             console.log("OK");
             $scope.newOrder=null;
             $scope.cartContentRequest();
