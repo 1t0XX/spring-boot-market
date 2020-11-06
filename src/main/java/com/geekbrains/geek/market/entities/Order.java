@@ -1,11 +1,13 @@
 package com.geekbrains.geek.market.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.geekbrains.geek.market.utils.Cart;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "orders")
@@ -18,13 +20,28 @@ public class Order {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "customer_id")
-    private Customer customer;
+    @JoinColumn(name = "user_id")
+    private User user;
 
-    @ManyToOne
-    @JoinColumn(name = "product_id")
-    private Product product;
+    @OneToMany(mappedBy = "order")
+    @Cascade(org.hibernate.annotations.CascadeType.ALL)
+    private List<OrderItem> items;
 
-    @Column(name = "currentPrice")
-    private int currentPrice;
+    @Column(name = "price")
+    private int price;
+
+    @Column(name = "address")
+    private String address;
+
+    public Order(User user, Cart cart, String address, int phone) {
+        this.user = user;
+        this.price = cart.getPrice();
+        this.items = new ArrayList<>();
+        this.address = address;
+        cart.getItems().stream().forEach(oi -> {
+            oi.setOrder(this);
+            items.add(oi);
+        });
+        cart.clear();
+    }
 }
