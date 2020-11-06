@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Заказ</title>
+</head>
+<body>
+<form novalidate ng-submit="createOrder() ">
+    <div class="form-group col-md-6">
+        <label for="newOrderReceiverPhone">Телефон</label>
+        <input class="form-control" type="number" ng-model="newOrder.phone" id="newOrderReceiverPhone">
+    </div>
+    <div class="form-group col-md-6">
+        <label for="newOrderReceiverAddress">Адрес доставки</label>
+        <input class="form-control" type="number" ng-model="newOrder.address" id="newOrderReceiverAddress">
+    </div>
+    <div>
+        <button class="btn btn-success" type="submit">Создать</button>
+    </div>
+</form>
+
+</body>
+</html>

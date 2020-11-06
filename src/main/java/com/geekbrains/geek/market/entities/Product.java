@@ -21,9 +21,10 @@ public class Product {
     @Column(name = "title")
     private String title;
 
-    @OneToMany(mappedBy = "product")
-    private List<Order> orders;
-
     @Column(name = "price")
     private int price;
+
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    private Category category;
 }
